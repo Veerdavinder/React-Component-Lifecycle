@@ -3,22 +3,22 @@
 `Each component has several “lifecycle methods” that you can use to run code at particular times in the process. Methods prefixed with will are called right before something happens, and methods prefixed with did are called right after something happens.`
 
 ## Mounting
- -constructor()
- -componentWillMount()
- -render()
- -componentDidMount()
+ 1. constructor()
+ 2. componentWillMount()
+ 3. render()
+ 4. componentDidMount()
 
 ## Updating
- -componentWillReceiveProps()
- -shouldComponentUpdate()
- -componentWillUpdate()
- -render()
- -componentDidUpdate()
+ 1. componentWillReceiveProps()
+ 2. shouldComponentUpdate()
+ 3. componentWillUpdate()
+ 4. render()
+ 5. componentDidUpdate()
 
 ## Unmounting
- -componentWillUnmount()
+ 1. componentWillUnmount()
 
-##THE MOST USEFUL ARE:
+## THE MOST USEFUL ARE:
 
 1. render() to display props and state as a single React element using jsx
 2. constructor() where we define the initial state of the component.
@@ -29,7 +29,7 @@
 5. componentDidUpdate(prevProps, prevState) here we can compare the current props/state to previous props/state, so it is the place you hook into when listening to props changes.
 
 
-###Mounting
+### Mounting
 Mounting is the process that ocurs when a component is being inserted into the DOM. This phase has tow methods:
 
 1. ComponentWillMount(): `This method is the first called in this phase. It's invoked once and immediately before the initial rendering occurs, before React inserts the component into the DOM.`
