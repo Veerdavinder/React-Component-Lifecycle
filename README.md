@@ -1,68 +1,64 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+`Basically all the React component’s lifecyle methods can be split in four phases: initialization, mounting, updating and unmounting. Let’s take a closer look at each one of them.`
 
-## Available Scripts
+`Each component has several “lifecycle methods” that you can use to run code at particular times in the process. Methods prefixed with will are called right before something happens, and methods prefixed with did are called right after something happens.`
 
-In the project directory, you can run:
+## Mounting
+ -constructor()
+ -componentWillMount()
+ -render()
+ -componentDidMount()
 
-### `npm start`
+## Updating
+ -componentWillReceiveProps()
+ -shouldComponentUpdate()
+ -componentWillUpdate()
+ -render()
+ -componentDidUpdate()
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Unmounting
+ -componentWillUnmount()
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+##THE MOST USEFUL ARE:
 
-### `npm test`
+1. render() to display props and state as a single React element using jsx
+2. constructor() where we define the initial state of the component.
+3. componentDidMount() which is called after the component renders for the first time. It is the best place to fetch some data from an api.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+4. componentWillReceiveProps() where we receive props from a parent component and we can do all the conditional operations that are related to new props being received.
 
-### `npm run build`
+5. componentDidUpdate(prevProps, prevState) here we can compare the current props/state to previous props/state, so it is the place you hook into when listening to props changes.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+###Mounting
+Mounting is the process that ocurs when a component is being inserted into the DOM. This phase has tow methods:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. ComponentWillMount(): `This method is the first called in this phase. It's invoked once and immediately before the initial rendering occurs, before React inserts the component into the DOM.`
+2. Component Did Mount(): `This is second invoked in this phase, just once and immediately after React inserts the component into the DOM. Now the updated DOM is available for access, which means that this method is the best place for initializing other Javascript libraries that need access to the DOM and for data fetching operations.`
 
-### `npm run eject`
+## Updating
+`There are also methods that will allow us to execute code relative to when a component's state or properties get updated.These methods are part of the updating phase and are called in the following order:`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+1. When receiving new props from the parent:
+![Screenshot](lifecycle2.png)
+2. When the state changes via this.setState()'
+![Screenshot](lifecycle1.png)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+`During this phase a React Component is already inserted into the DOM. Thus these methods are not called for the first render().`
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+`The first one is componentWillReceiveProps(),invoked when a component id receiving new props.Use this method as an opportunity to react to a prop transition before the render() method is called.`
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+`The shouldComponentUpdate() method allows us to decide whethe the next component's state should trigger a re-render or not.This method returns a boolean value, which by default is true. It can return false and the next methods won't be called.`
 
-## Learn More
+1. componentWillUpdate(): `The componentWillUpdate() method id called immediately before rendering, when new props or state are being received. It can perform preparation before an updates occurs, however is not allowed to use this.setState().`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+2. render()
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+3. componentDidUpdate(): `The componentDidUpdate() method is called immediately after React updates the DOM. This method use to interact with the updated DOM or perform any action post-render. This method gets two arguments:`
+    1. prevProps: the previous properties object.
+    2. prevState: the previous state object.
+`A common use for this method is when using a third-party library that needs the rendered DOM to perform its job- e.g. a jQuery plugin.`
 
-### Code Splitting
+## UNMOUNTING
+ -componentWillUnmount()
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+ `It is called immediately before the component is unmounted from the DOM.It use to perform any cleanup,such as invalidating timers or cleaning up any DOM elements.`
