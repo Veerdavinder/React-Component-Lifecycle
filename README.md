@@ -39,8 +39,11 @@ Mounting is the process that ocurs when a component is being inserted into the D
 `There are also methods that will allow us to execute code relative to when a component's state or properties get updated.These methods are part of the updating phase and are called in the following order:`
 
 1. When receiving new props from the parent:
+
 ![Screenshot](lifecycle2.png)
+
 2. When the state changes via this.setState()'
+
 ![Screenshot](lifecycle1.png)
 
 `During this phase a React Component is already inserted into the DOM. Thus these methods are not called for the first render().`
